@@ -1,0 +1,56 @@
+version: "3.7"
+
+services:
+  mongo:
+    build:
+      context: ./dockerfiles/mongo/
+    restart: always
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATBASE: "ith"
+      MONGO_REPLICA_SET_NAME: rs0
+    networks:
+      in_the_nuvens:
+        ipv4_address: 169.169.22.10
+
+  backend:
+    build:
+      context: ./backend/
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongo
+    expose:
+      - "3333"
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./backend/src:/home/backend/src
+    networks:
+      in_the_nuvens:
+        ipv4_address: 169.169.22.11
+
+  frontend:
+    build:
+      context: ./frontend
+    env_file:
+      - ./frontend/.env
+    expose:
+      - 3000
+    ports:
+      - 80:3000
+    volumes:
+      - ./frontend/src:/home/frontend/src
+    networks:
+      in_the_nuvens:
+        ipv4_address: 169.169.22.12
+
+networks:
+  in_the_nuvens:
+    ipam:
+      driver: default
+      config:
+        - subnet: 169.169.22.0/20
