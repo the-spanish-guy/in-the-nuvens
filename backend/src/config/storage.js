@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const storage = process.env.FILE_STORAGE;
 if (!storage) {
-  console.error("Storage path not defined,");
+  console.error("Pasta de armazenamento não definida");
   process.exit(1);
 }
 
