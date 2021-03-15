@@ -6,7 +6,7 @@ import styles from "./styles";
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Text>Hola Mundo!</Text>
+      <Text style={styles.title}>Meus Arquivos</Text>
     </View>
   );
 }

@@ -1,7 +1,6 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <LoginForm msg="Welcome to Your Vue.js App" />
+  <div class="container">
+    <LoginForm />
   </div>
 </template>
 
@@ -10,7 +9,7 @@
 import LoginForm from "@/components/login/LoginForm.vue"
 
 export default {
-  name: "Home",
+  name: "LoginView",
   components: {
     LoginForm,
   },
