@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <!-- <div id="login-form"> -->
-      <LoginForm />
+    <LoginForm />
     <!-- </div> -->
 
     <!-- <div id="background"></div> -->
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import LoginForm from "@/components/login/LoginForm.vue"
+import LoginForm from '@/components/login/LoginForm.vue'
 
 export default {
-  name: "LoginView",
+  name: 'LoginView',
   components: {
-    LoginForm,
-  },
+    LoginForm
+  }
 }
 </script>
 
