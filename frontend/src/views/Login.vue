@@ -1,7 +1,8 @@
 <template>
   <div id="container">
     <!-- <div id="login-form"> -->
-    <LoginForm />
+    <LoginForm v-show="this.isVisible.login" @toggleLoginForm="toggleForm" />
+    <RegisterForm v-show="this.isVisible.register" @toggleLoginForm="toggleForm" />
     <!-- </div> -->
 
     <!-- <div id="background"></div> -->
@@ -10,11 +11,25 @@
 
 <script>
 import LoginForm from '@/components/login/LoginForm.vue'
+import RegisterForm from '@/components/login/RegisterForm.vue'
 
 export default {
   name: 'LoginView',
   components: {
-    LoginForm
+    LoginForm,
+    RegisterForm
+  },
+  data: () => ({
+    isVisible: {
+      login: true,
+      register: false
+    }
+  }),
+  methods: {
+    toggleForm () {
+      this.isVisible.login = this.isVisible.register
+      this.isVisible.register = !this.isVisible.register
+    }
   }
 }
 </script>
