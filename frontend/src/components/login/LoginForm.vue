@@ -39,10 +39,10 @@
 
 <script>
 export default {
-  name: "LoginForm",
+  name: 'LoginForm',
   props: {
-    msg: String,
-  },
+    msg: String
+  }
 }
 </script>
 
@@ -79,7 +79,7 @@ export default {
   padding-bottom: 2px;
 }
 
-#container-form form .inputs .v-text-field{
+#container-form form .inputs .v-text-field {
   padding-top: 4px;
   padding-bottom: -4px;
 }
@@ -94,9 +94,59 @@ export default {
   text-transform: uppercase;
 }
 
-.btn{
+.btn {
   height: 56px;
-  padding: 0px !important
+  padding: 0px !important;
+}
 
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (min-width: 1367px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  #container-form {
+    width: 640px;
+    height: 871px;
+    margin: 60px 20px;
+  }
+  #container-form img {
+    width: 263px;
+    height: 66px;
+    margin-top: 18px;
+  }
+  #container-form p {
+    margin-top: 64px;
+    margin-bottom: 56px;
+    color: #141c5f;
+    font-size: 48px;
+
+    width: 640px;
+    height: 132px;
+    word-wrap: normal;
+  }
+  #container-form form {
+    padding: 0;
+    margin: 0;
+    width: 638px;
+    height: auto;
+  }
+
+  #container-form form .inputs {
+    color: #5f5c5c;
+    padding: 0;
+    padding-bottom: 24px;
+  }
+
+  #container-form form .inputs .v-text-field {
+    padding-top: 16px;
+    padding-bottom: -16px;
+  }
+
+  >>> .v-btn {
+    width: 638px;
+    height: 100% !important;
+    text-transform: uppercase;
+  }
 }
 </style>
