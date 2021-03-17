@@ -2,8 +2,8 @@ const express = require("express");
 const multer = require("multer");
 const router = express.Router();
 
-const uploadConfig = require("../config/multer");
-const storage = require("../config/storage");
+const uploadConfig = require("../../config/multer");
+const storage = require("../../config/storage");
 const upload = multer(uploadConfig);
 
 router.post("/:path?", upload.array("files"), (req, res) => {

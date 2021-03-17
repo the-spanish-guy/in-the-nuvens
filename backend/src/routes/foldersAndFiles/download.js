@@ -1,6 +1,6 @@
 const express = require("express");
 const mime = require("mime-types");
-const resolvePath = require("../config/path");
+const resolvePath = require("../../config/path");
 const router = express.Router();
 
 router.get("/:path", async (req, res) => {
