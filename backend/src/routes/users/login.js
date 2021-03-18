@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
   const { username, password } = req.body
   const user = await findbyUserName(username)
   if (!user) {
-    return res.status(404).json({ message: 'Usuário não encontrado!' })
+    return res.status(503).json({ message: 'Usuário não encontrado!' })
   }
 
   const found = bcrypt.compareSync(password, user.password)
