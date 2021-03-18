@@ -5,7 +5,11 @@ const pathResolve = require("./path");
 module.exports = {
   storage: multer.diskStorage({
     destination: async (req, file, cb) => {
-      const { absolute: dirPath } = pathResolve(req.params.path);
+      let url = `${req.params.owner}/` || "";
+      url += req.params.path || "";
+
+      const { absolute: dirPath } = pathResolve(url);
+
       cb(null, path.resolve(dirPath));
     },
     filename: (req, file, cb) => {
