@@ -11,6 +11,7 @@
           placeholder="Insira um nome de usuário"
           solo
           color="#BFBFBF"
+          v-model="user.username"
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="12" md="12" class="inputs">
@@ -19,26 +20,47 @@
           placeholder="Insira uma senha"
           solo
           color="#BFBFBF"
+          v-model="user.password"
         ></v-text-field>
       </v-col>
 
       <v-col cols="12" sm="12" md="12" class="btn">
-        <v-btn depressed color="#85AFF9" dark> Login </v-btn>
+        <v-btn depressed color="#85AFF9" dark @click="tryLogin"> Login </v-btn>
       </v-col>
       <v-col cols="12" sm="12" md="12" class="btn">
-        <v-btn depressed color="#85AFF9" dark @click="toggleForma"> Cadastrar </v-btn>
+        <v-btn depressed color="#85AFF9" dark @click="toggleForma">
+          Cadastrar
+        </v-btn>
       </v-col>
     </v-form>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'RegisterForm',
-  props: {
-    msg: String
-  },
+  data: () => ({
+    user: {
+      username: '',
+      password: ''
+    }
+  }),
   methods: {
+    ...mapActions(['login']),
+
+    async tryLogin () {
+      this.login(this.user)
+        .then(() => {
+          console.log('sucesso')
+        })
+        .catch((errror) => {
+          console.log('error')
+          // usuario ou senha incorretos
+          console.log(errror)
+        })
+    },
     toggleForma () {
       this.$emit('toggleLoginForm')
     }
@@ -100,10 +122,10 @@ export default {
   margin-bottom: 8px;
 }
 .btn button:hover {
-    background-color: #8c7cfc !important;
-    border-color:  #8c7cfc !important;
-    transition: .6s all;
-    border-radius: 4px;
+  background-color: #8c7cfc !important;
+  border-color: #8c7cfc !important;
+  transition: 0.6s all;
+  border-radius: 4px;
 }
 
 /* On screens that are 992px or less, set the background color to blue */
