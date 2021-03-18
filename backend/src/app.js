@@ -7,6 +7,13 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+app.use(function(req, res, next) {
+  res.header(
+      "Access-Control-Allow-Origin"
+  );
+  next();
+});
+
 app.use('/', require('./routes/foldersAndFiles/list'))
 app.use('/create', require('./routes/foldersAndFiles/create'))
 app.use('/upload', require('./routes/foldersAndFiles/upload'))
