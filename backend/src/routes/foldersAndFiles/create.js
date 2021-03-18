@@ -3,10 +3,13 @@ const fs = require('fs')
 const path = require('path')
 const resolvePath = require('../../config/path')
 const { create } = require('../../app/controllers/folderController')
+const { formatUrl } = require('../../utils/utils')
 const router = express.Router()
 
 router.post('/:owner/:path?', async (req, res) => {
-  const { absolute: dirPath } = resolvePath(req.params.path)
+  const { absolute: dirPath } = resolvePath(
+    formatUrl(req.params.owner, req.params.path)
+  )
   const { nameFolder } = req.body
 
   if (!nameFolder) {

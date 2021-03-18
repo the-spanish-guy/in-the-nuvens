@@ -1,14 +1,14 @@
 const multer = require('multer')
 const path = require('path')
+const { formatUrl } = require('../utils/utils')
 const pathResolve = require('./path')
 
 module.exports = {
   storage: multer.diskStorage({
     destination: async (req, file, cb) => {
-      let url = `${req.params.owner}/` || ''
-      url += req.params.path || ''
-
-      const { absolute: dirPath } = pathResolve(url)
+      const { absolute: dirPath } = pathResolve(
+        formatUrl(req.params.owner, req.params.path)
+      )
 
       cb(null, path.resolve(dirPath))
     },
