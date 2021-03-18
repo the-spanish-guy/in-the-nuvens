@@ -4,4 +4,4 @@ const actions = () => {
   return { ...user }
 }
 
-export default actions
+export default actions()

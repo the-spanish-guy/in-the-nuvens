@@ -1,8 +1,7 @@
 import axios from 'axios'
-import appConfigs from '../config'
 
 const Axios = axios.create({
-  baseURL: appConfigs.VUE_APP_URL
+  baseURL: process.env.VUE_APP_URL
 })
 
 Axios.interceptors.request.use(
