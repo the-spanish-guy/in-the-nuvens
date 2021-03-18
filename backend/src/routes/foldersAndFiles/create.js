@@ -1,33 +1,33 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
-const resolvePath = require("../../config/path");
-const { create } = require("../../app/controllers/folderController");
-const router = express.Router();
+const express = require('express')
+const fs = require('fs')
+const path = require('path')
+const resolvePath = require('../../config/path')
+const { create } = require('../../app/controllers/folderController')
+const router = express.Router()
 
-router.post("/:owner/:path?", async (req, res) => {
-  const { absolute: dirPath } = resolvePath(req.params.path);
-  const { nameFolder } = req.body;
+router.post('/:owner/:path?', async (req, res) => {
+  const { absolute: dirPath } = resolvePath(req.params.path)
+  const { nameFolder } = req.body
 
   if (!nameFolder) {
     return res.status(400).json({
-      message: "Nome não especificado",
-    });
+      message: 'Nome não especificado'
+    })
   }
 
   try {
-    await fs.promises.mkdir(path.join(dirPath, nameFolder));
+    await fs.promises.mkdir(path.join(dirPath, nameFolder))
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 
   await create({
     owner: req.params.owner,
     path: dirPath,
-    name: nameFolder,
-  });
+    name: nameFolder
+  })
 
-  return res.status(201).json({ message: "Criado com sucesso!" });
-});
+  return res.status(201).json({ message: 'Criado com sucesso!' })
+})
 
-module.exports = router;
+module.exports = router

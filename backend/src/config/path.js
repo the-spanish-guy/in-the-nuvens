@@ -1,11 +1,11 @@
-const path = require("path");
-const storage = require("./storage");
+const path = require('path')
+const storage = require('./storage')
 
 const resolvePath = (url) => {
-  const relative = !url ? "/" : url.replace(/--/g, "/");
-  const absolute = path.join(storage, relative);
+  const relative = !url ? '/' : url.replace(/--/g, '/')
+  const absolute = path.join(storage, relative)
 
-  return { absolute, relative };
-};
+  return { absolute, relative }
+}
 
-module.exports = resolvePath;
+module.exports = resolvePath
