@@ -21,12 +21,20 @@
           color="#BFBFBF"
         ></v-text-field>
       </v-col>
+      <v-col cols="12" sm="12" md="12" class="inputs">
+        <label>Confirmar senha</label>
+        <v-text-field
+          placeholder="Confirme sua senha"
+          solo
+          color="#BFBFBF"
+        ></v-text-field>
+      </v-col>
 
       <v-col cols="12" sm="12" md="12" class="btn">
-        <v-btn depressed color="#85AFF9" dark> Login </v-btn>
+        <v-btn depressed color="#8C7CFC" dark> Criar Conta </v-btn>
       </v-col>
       <v-col cols="12" sm="12" md="12" class="btn">
-        <v-btn depressed color="#85AFF9" dark @click="toggleForma"> Cadastrar </v-btn>
+        <v-btn depressed color="#85AFF9" dark @click="toggleForma"> Login </v-btn>
       </v-col>
     </v-form>
   </div>
@@ -97,13 +105,6 @@ export default {
 .btn {
   height: 56px;
   padding: 0px !important;
-  margin-bottom: 8px;
-}
-.btn button:hover {
-    background-color: #8c7cfc !important;
-    border-color:  #8c7cfc !important;
-    transition: .6s all;
-    border-radius: 4px;
 }
 
 /* On screens that are 992px or less, set the background color to blue */
@@ -154,7 +155,6 @@ export default {
     width: 638px;
     height: 100% !important;
     text-transform: uppercase;
-    margin-bottom: 8px;
   }
 }
 </style>

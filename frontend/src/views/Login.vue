@@ -1,21 +1,36 @@
 <template>
   <div id="container">
-    <div id="login-form">
-      <LoginForm />
-    </div>
+    <!-- <div id="login-form"> -->
+    <LoginForm v-show="this.isVisible.login" @toggleLoginForm="toggleForm" />
+    <RegisterForm v-show="this.isVisible.register" @toggleLoginForm="toggleForm" />
+    <!-- </div> -->
 
-    <div id="background"></div>
+    <!-- <div id="background"></div> -->
   </div>
 </template>
 
 <script>
-import LoginForm from "@/components/login/LoginForm.vue"
+import LoginForm from '@/components/login/LoginForm.vue'
+import RegisterForm from '@/components/login/RegisterForm.vue'
 
 export default {
-  name: "LoginView",
+  name: 'LoginView',
   components: {
     LoginForm,
+    RegisterForm
   },
+  data: () => ({
+    isVisible: {
+      login: true,
+      register: false
+    }
+  }),
+  methods: {
+    toggleForm () {
+      this.isVisible.login = this.isVisible.register
+      this.isVisible.register = !this.isVisible.register
+    }
+  }
 }
 </script>
 
@@ -23,24 +38,11 @@ export default {
 #container {
   width: 100vw;
   height: 100vh;
+  padding: 0px 108px;
 
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  height: 100%;
-  min-height: 450px;
-  width: 100%;
-}
-
-#login-form {
-  width: 50vw;
-}
-#background {
-  background-image: url("../assets/login-background.svg");
+  background-image: url("../assets/background.svg");
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  width: 50vw;
-  height: 100vh;
+  background-position: right;
+  background-size: contain;
 }
 </style>
