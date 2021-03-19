@@ -24,7 +24,7 @@
         <v-divider class="mb-y"></v-divider>
 
         <v-theme-provider root>
-          <v-list rounded="b" color="primary">
+          <v-list rounded color="primary">
             <v-subheader>
               <span>I inherit from the root</span>
 

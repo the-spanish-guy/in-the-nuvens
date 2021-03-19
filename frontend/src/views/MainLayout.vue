@@ -1,17 +1,34 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-row>
+      <v-col cols="12" sm="2" lg="2" class="menu">
+        <AppSideBar />
+      </v-col>
+      <v-col cols="12" sm="10">
+        <router-view />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import AppSideBar from '@/components/layout/AppSideBar.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    AppSideBar
   }
 }
 </script>
+
+<style scoped>
+.home{
+  margin: 0;
+  padding: 0;
+}
+.menu {
+  height: 100vh !important
+}
+</style>
