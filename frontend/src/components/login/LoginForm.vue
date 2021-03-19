@@ -54,6 +54,8 @@ export default {
       this.login(this.user)
         .then(() => {
           console.log('sucesso')
+
+          this.$router.push({ name: 'About' })
         })
         .catch((errror) => {
           console.log('error')
