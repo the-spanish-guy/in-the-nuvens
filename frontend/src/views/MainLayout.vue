@@ -4,7 +4,7 @@
       <v-col cols="12" sm="2" lg="2" class="menu">
         <AppSideBar />
       </v-col>
-      <v-col cols="12" sm="10">
+      <v-col cols="12" sm="10" class="content">
         <router-view />
       </v-col>
     </v-row>
@@ -29,6 +29,11 @@ export default {
   padding: 0;
 }
 .menu {
-  height: 100vh !important
+  height: 100vh !important;
+}
+.content {
+  background-color: #FFFFFF;
+  margin: 0;
+  padding: 0;
 }
 </style>
