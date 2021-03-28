@@ -1,11 +1,11 @@
 <template>
-  <v-navigation-drawer class="card" permanent @transitionend="show = !show">
+  <v-navigation-drawer class="card" permanent expand-on-hover @transitionend="changeLogo">
     <!-- expand-on-hover -->
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="title">
-          <!-- <v-img id="img" src="@/assets/cloud.png" v-show="show" contain> </v-img> -->
-          <v-img id="img" src="@/assets/logo.png" contain> </v-img>
+          <v-img id="img" v-if="!show" src="@/assets/cloud.png" contain> </v-img>
+          <v-img id="img" v-if="show" src="@/assets/logo.png" contain> </v-img>
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
@@ -53,7 +53,6 @@
 </template>
 <script>
 import { mapActions } from 'vuex'
-import logo from '@/assets/cloud.png'
 
 export default {
   data: () => ({
@@ -64,7 +63,7 @@ export default {
       { title: 'Lixeira', icon: 'delete' }
     ],
     right: null,
-    show: true,
+    show: false,
     showIconTheme: false
   }),
   methods: {
@@ -75,20 +74,8 @@ export default {
       this.showIconTheme = !this.showIconTheme
     },
 
-    teste () {
-      console.log('teste')
-      const img = document.getElementsByClassName(
-        'v-image__image v-image__image--contain'
-      )
-      const url = `url(${logo})`
-      console.log(this.show)
-      if (this.show) {
-        console.log('aqui ?')
-        console.log(img[0].style['background-image'])
-        img[0].style['background-image'] = url
-        console.log(img[0].style['background-image'])
-      }
-      this.show = true
+    changeLogo () {
+      this.show = !this.show
     }
   }
 }
@@ -107,6 +94,10 @@ export default {
 .icon-theme {
   position: absolute;
   bottom: 0px;
+}
+
+#img {
+  transition: .8s background !important;
 }
 
 >>> .v-navigation-drawer__border {
