@@ -11,20 +11,50 @@
     </v-list-item>
 
     <v-list dense nav>
-      <v-list-item v-for="item in items" :key="item.title" link>
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
+      <v-list-item-group color="#8C7CFC">
+        <v-list-item v-for="item in items" :key="item.title" link>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
 
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item></v-list-item-group
+      >
+    </v-list>
+
+    <v-list dense nav class="icon-theme">
+      <v-list-item-group>
+        <v-list-item @click="this.toggle">
+          <v-list-item-icon>
+            <v-img
+              v-if="!showIconTheme"
+              id="iconTheme"
+              src="@/assets/moon.svg"
+              contain
+            >
+            </v-img>
+            <v-img
+              v-if="showIconTheme"
+              id="iconTheme"
+              src="@/assets/sun.svg"
+              contain
+            >
+            </v-img>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title></v-list-item-title>
+          </v-list-item-content> </v-list-item
+      ></v-list-item-group>
     </v-list>
   </v-navigation-drawer>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import logo from '@/assets/cloud.png'
+
 export default {
   data: () => ({
     items: [
@@ -34,9 +64,17 @@ export default {
       { title: 'Lixeira', icon: 'delete' }
     ],
     right: null,
-    show: true
+    show: true,
+    showIconTheme: false
   }),
   methods: {
+    ...mapActions(['toggleDarkMode']),
+
+    async toggle () {
+      await this.toggleDarkMode()
+      this.showIconTheme = !this.showIconTheme
+    },
+
     teste () {
       console.log('teste')
       const img = document.getElementsByClassName(
@@ -57,11 +95,20 @@ export default {
 </script>
 
 <style scoped>
+.theme--dark .card {
+  background-color: var(--background-dark) !important;
+}
 .card {
   height: 100vh !important;
 
   box-shadow: -7.97203px 0px 53.8112px #ccd8ec !important;
 }
+
+.icon-theme {
+  position: absolute;
+  bottom: 0px;
+}
+
 >>> .v-navigation-drawer__border {
   visibility: hidden;
 }
