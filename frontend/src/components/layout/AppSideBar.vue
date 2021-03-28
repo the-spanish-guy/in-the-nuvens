@@ -26,17 +26,17 @@
 
     <v-list dense nav class="icon-theme">
       <v-list-item-group>
-        <v-list-item @click="this.toggle">
+        <v-list-item @click="this.toggleDarkMode">
           <v-list-item-icon>
             <v-img
-              v-if="!showIconTheme"
+              v-if="!this.darkMode"
               id="iconTheme"
               src="@/assets/moon.svg"
               contain
             >
             </v-img>
             <v-img
-              v-if="showIconTheme"
+              v-if="this.darkMode"
               id="iconTheme"
               src="@/assets/sun.svg"
               contain
@@ -52,7 +52,7 @@
   </v-navigation-drawer>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data: () => ({
@@ -66,13 +66,9 @@ export default {
     show: false,
     showIconTheme: false
   }),
+  computed: { ...mapState(['darkMode']) },
   methods: {
     ...mapActions(['toggleDarkMode']),
-
-    async toggle () {
-      await this.toggleDarkMode()
-      this.showIconTheme = !this.showIconTheme
-    },
 
     changeLogo () {
       this.show = !this.show
