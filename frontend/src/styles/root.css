@@ -1,0 +1,29 @@
+:root {
+  --primary: "#8C7CFC";
+  --secondary: "#54C4E4";
+  --terciary: "#85AFF9";
+
+  --background-dark: #1b2135;
+  --background-light: #ffffff;
+
+  --success: "#A3DE9A";
+  --warning: "#FFE27C";
+  --error: "#F98585";
+
+  --header: "#141C5F";
+  --subtitle: "#5F5C5C";
+  --input: "#BFBFBF";
+  --inactive: "#DBDBDB";
+
+  --label-dark: var(--background-dark);
+  --label-light: var(--background-light);
+
+  --shadow: "#CCD8EC";
+  --shadow-dark: var(--background-dark);
+  --shadow-light: var(--shadow);
+
+  --color-title: var(--header);
+  --color-subtitle: var(--subtitle);
+  --color-input: var(--input);
+  --color-inactive: var(--inactive);
+}

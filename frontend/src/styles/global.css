@@ -1,3 +1,8 @@
+@import url(../styles/root.css);
+
+.theme--dark body{
+  background-color: var(--background-dark);
+}
 
 h1 {
   font-family: 'Manrope';
