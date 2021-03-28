@@ -26,7 +26,7 @@
 
     <v-list dense nav class="icon-theme">
       <v-list-item-group>
-        <v-list-item @click="this.toggleDarkMode">
+        <v-list-item @click="toggle">
           <v-list-item-icon>
             <v-img
               v-if="!this.darkMode"
@@ -72,6 +72,11 @@ export default {
 
     changeLogo () {
       this.show = !this.show
+    },
+
+    toggle () {
+      this.toggleDarkMode()
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     }
   }
 }
