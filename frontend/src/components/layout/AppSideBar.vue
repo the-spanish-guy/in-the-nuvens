@@ -1,18 +1,24 @@
 <template>
-  <v-navigation-drawer class="card" permanent expand-on-hover @transitionend="changeLogo">
+  <v-navigation-drawer class="card" permanent @transitionend="changeLogo">
     <!-- expand-on-hover -->
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="title">
-          <v-img id="img" v-if="!show" src="@/assets/cloud.png" contain> </v-img>
-          <v-img id="img" v-if="show" src="@/assets/logo.png" contain> </v-img>
+          <v-img id="img" src="@/assets/logo.png" contain>
+          </v-img>
+          <!-- <v-img id="img" v-if="show" src="@/assets/cloud.png" contain> </v-img> -->
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
     <v-list dense nav>
-      <v-list-item-group color="#8C7CFC">
-        <v-list-item v-for="item in items" :key="item.title" link>
+      <v-list-item-group v-model="active">
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          color="#8C7CFC"
+          link
+        >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -57,14 +63,15 @@ import { mapActions, mapState } from 'vuex'
 export default {
   data: () => ({
     items: [
-      { title: 'Meus arquivos', icon: 'home' },
-      { title: 'Compartilhados', icon: 'supervisor_account' },
-      { title: 'Favoritos', icon: 'star' },
-      { title: 'Lixeira', icon: 'delete' }
+      { title: 'Meus arquivos', icon: 'home', activeLink: true },
+      { title: 'Compartilhados', icon: 'supervisor_account', activeLink: false },
+      { title: 'Favoritos', icon: 'star', activeLink: false },
+      { title: 'Lixeira', icon: 'delete', activeLink: false }
     ],
     right: null,
     show: false,
-    showIconTheme: false
+    showIconTheme: false,
+    active: 0
   }),
   computed: { ...mapState(['darkMode']) },
   methods: {
@@ -88,7 +95,6 @@ export default {
 }
 .card {
   height: 100vh !important;
-
   box-shadow: -7.97203px 0px 53.8112px #ccd8ec !important;
 }
 
@@ -98,7 +104,7 @@ export default {
 }
 
 #img {
-  transition: .8s background !important;
+  transition: 0.8s background !important;
 }
 
 >>> .v-navigation-drawer__border {
