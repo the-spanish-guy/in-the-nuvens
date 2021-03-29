@@ -1,11 +1,19 @@
-@import url(../styles/root.css);
+@import url(./root.css);
 
 .theme--dark body{
   background-color: var(--background-dark);
 }
 
+
 h1 {
   font-family: 'Manrope';
   font-size: 48px;
-  color: #141C5F
+  color: #141C5F !important
+}
+
+
+.theme--dark h1 {
+  font-family: 'Manrope';
+  font-size: 48px;
+  color: var(--label-light)
 }

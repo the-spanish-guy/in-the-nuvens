@@ -92,6 +92,7 @@ export default {
 <style scoped>
 .theme--dark .card {
   background-color: var(--background-dark) !important;
+  box-shadow: -7.97203px 0px 53.8112px var(--shadow-dark) !important;
 }
 .card {
   height: 100vh !important;

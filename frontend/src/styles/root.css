@@ -19,7 +19,7 @@
   --label-light: var(--background-light);
 
   --shadow: "#CCD8EC";
-  --shadow-dark: var(--background-dark);
+  --shadow-dark: rgba(1, 1, 1, .47);
   --shadow-light: var(--shadow);
 
   --color-title: var(--header);

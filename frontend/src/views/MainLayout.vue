@@ -27,13 +27,24 @@ export default {
 .home{
   margin: 0;
   padding: 0;
+  height: 100vh;
+  background-color: var(--background-light);
 }
 .menu {
   height: 100vh !important;
 }
-.content {
-  background-color: #FFFFFF;
+
+.theme--dark .home {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  background-color: var(--background-dark);
+}
+
+.theme--dark .content {
+  background-color: var(--background-dark);
+  margin: 0;
+  padding: 0;
+  height: 100vh !important;
 }
 </style>
