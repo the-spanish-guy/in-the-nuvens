@@ -15,8 +15,8 @@
   --input: "#BFBFBF";
   --inactive: "#DBDBDB";
 
-  --label-dark: var(--background-dark);
-  --label-light: var(--background-light);
+  --label-dark: #22283B;
+  --label-light: #F5F4FD;
 
   --shadow: "#CCD8EC";
   --shadow-dark: rgba(1, 1, 1, .47);
