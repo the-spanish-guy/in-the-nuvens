@@ -55,7 +55,7 @@ export default {
         .then(() => {
           console.log('sucesso')
 
-          this.$router.push({ name: 'About' })
+          this.$router.push({ name: 'Dashboard' })
         })
         .catch((errror) => {
           console.log('error')

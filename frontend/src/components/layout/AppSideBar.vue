@@ -1,67 +1,113 @@
 <template>
-  <v-navigation-drawer class="card" permanent @transitionend="show = !show">
+  <v-navigation-drawer class="card" permanent @transitionend="changeLogo">
     <!-- expand-on-hover -->
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="title">
-          <!-- <v-img id="img" src="@/assets/cloud.png" v-show="show" contain> </v-img> -->
-          <v-img id="img" src="@/assets/logo.png" contain> </v-img>
+          <v-img id="img" src="@/assets/logo.png" contain>
+          </v-img>
+          <!-- <v-img id="img" v-if="show" src="@/assets/cloud.png" contain> </v-img> -->
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
     <v-list dense nav>
-      <v-list-item v-for="item in items" :key="item.title" link>
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
+      <v-list-item-group v-model="active">
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          color="#8C7CFC"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
 
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item></v-list-item-group
+      >
+    </v-list>
+
+    <v-list dense nav class="icon-theme">
+      <v-list-item-group>
+        <v-list-item @click="toggle">
+          <v-list-item-icon>
+            <v-img
+              v-if="!this.darkMode"
+              id="iconTheme"
+              src="@/assets/moon.svg"
+              contain
+            >
+            </v-img>
+            <v-img
+              v-if="this.darkMode"
+              id="iconTheme"
+              src="@/assets/sun.svg"
+              contain
+            >
+            </v-img>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title></v-list-item-title>
+          </v-list-item-content> </v-list-item
+      ></v-list-item-group>
     </v-list>
   </v-navigation-drawer>
 </template>
 <script>
-import logo from '@/assets/cloud.png'
+import { mapActions, mapState } from 'vuex'
+
 export default {
   data: () => ({
     items: [
-      { title: 'Meus arquivos', icon: 'home' },
-      { title: 'Compartilhados', icon: 'supervisor_account' },
-      { title: 'Favoritos', icon: 'star' },
-      { title: 'Lixeira', icon: 'delete' }
+      { title: 'Meus arquivos', icon: 'home', activeLink: true },
+      { title: 'Compartilhados', icon: 'supervisor_account', activeLink: false },
+      { title: 'Favoritos', icon: 'star', activeLink: false },
+      { title: 'Lixeira', icon: 'delete', activeLink: false }
     ],
     right: null,
-    show: true
+    show: false,
+    showIconTheme: false,
+    active: 0
   }),
+  computed: { ...mapState(['darkMode']) },
   methods: {
-    teste () {
-      console.log('teste')
-      const img = document.getElementsByClassName(
-        'v-image__image v-image__image--contain'
-      )
-      const url = `url(${logo})`
-      console.log(this.show)
-      if (this.show) {
-        console.log('aqui ?')
-        console.log(img[0].style['background-image'])
-        img[0].style['background-image'] = url
-        console.log(img[0].style['background-image'])
-      }
-      this.show = true
+    ...mapActions(['toggleDarkMode']),
+
+    changeLogo () {
+      this.show = !this.show
+    },
+
+    toggle () {
+      this.toggleDarkMode()
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     }
   }
 }
 </script>
 
 <style scoped>
+.theme--dark .card {
+  background-color: var(--background-dark) !important;
+  box-shadow: -7.97203px 0px 53.8112px var(--shadow-dark) !important;
+}
 .card {
   height: 100vh !important;
-
   box-shadow: -7.97203px 0px 53.8112px #ccd8ec !important;
 }
+
+.icon-theme {
+  position: absolute;
+  bottom: 0px;
+}
+
+#img {
+  transition: 0.8s background !important;
+}
+
 >>> .v-navigation-drawer__border {
   visibility: hidden;
 }
