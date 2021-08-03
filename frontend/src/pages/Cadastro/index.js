@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 
 export default function Cadastro() {
   return (
-    <div className="bg-custom w-screen h-screen py-8 px-8">
+    <div className="bg-custom w-screen h-screen py-8 px-8 2xl:py-9 2xl:px-28">
       <div className="container w-2/5">
         <img className="w-48 h-12" src={logo} alt="logo" />
         <p className="text-4xl w-full mt-10 mb-10">
@@ -30,7 +30,7 @@ export default function Cadastro() {
             className="w-full h-14 rounded-t-sm shadow-custom1"
           />
         </div>
-        <div className="w-full h-2/4 mb-4">
+        <div className="w-full h-2/4 mb-4 2xl:mb-8">
           <label htmlFor="confirm_password" className="text-xl mb-3">
             Confirmar senha
           </label>
