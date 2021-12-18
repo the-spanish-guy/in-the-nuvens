@@ -1,6 +1,7 @@
 import { ReactElement, ReactNode } from 'react'
 import Head from 'next/head'
-import { Box } from '@chakra-ui/react'
+import { Box, Flex, Grid } from '@chakra-ui/react'
+import Menu from './Menu'
 
 type Props = {
   title?: string
@@ -12,13 +13,24 @@ const LayoutComponent = ({
   children
 }: Props): ReactElement => {
   return (
-    <>
+    <Grid
+      templateAreas="
+    'menuArea content'
+    "
+      templateColumns="240px 1fr"
+      gridGap={53}
+    >
       <Head>
         <title>{title}</title>
       </Head>
+      <Flex gridArea="menuArea">
+        <Menu />
+      </Flex>
 
-      <Box as="div">{children}</Box>
-    </>
+      <Flex gridArea="content">
+        <Box as="div">{children}</Box>
+      </Flex>
+    </Grid>
   )
 }
 
