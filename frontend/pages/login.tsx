@@ -48,7 +48,9 @@ const Login: NextPage = () => {
               flexDir="column"
               justifyContent="space-between"
             >
-              <FormLabel htmlFor="user">Usuario</FormLabel>
+              <FormLabel htmlFor="user" id="field-user">
+                Usuario
+              </FormLabel>
               <Input
                 id="user"
                 type="text"
@@ -63,7 +65,9 @@ const Login: NextPage = () => {
                 )}
               />
 
-              <FormLabel htmlFor="password">Senha</FormLabel>
+              <FormLabel htmlFor="password" id="field-password">
+                Senha
+              </FormLabel>
               <Input
                 height={55}
                 border="none"
