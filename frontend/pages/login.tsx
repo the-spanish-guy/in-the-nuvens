@@ -11,6 +11,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 import type { NextPage } from 'next'
+import Head from 'next/head'
 import { useState } from 'react'
 
 const Login: NextPage = () => {
@@ -20,7 +21,10 @@ const Login: NextPage = () => {
     console.log({ user, password })
   }
   return (
-    <LayoutComponent title="login">
+    <>
+      <Head>
+        <title>Login</title>
+      </Head>
       <Grid
         as="main"
         bgSize="cover"
@@ -96,7 +100,7 @@ const Login: NextPage = () => {
           </FormControl>
         </Flex>
       </Grid>
-    </LayoutComponent>
+    </>
   )
 }
 
