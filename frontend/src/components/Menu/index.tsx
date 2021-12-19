@@ -1,15 +1,24 @@
+import React, { ReactElement } from 'react'
+
+import {
+  BsSun,
+  BsMoon,
+  BsStarFill,
+  BsPeopleFill,
+  BsFillTrashFill
+} from 'react-icons/bs'
 import {
   Box,
+  Flex,
   Heading,
-  Menu as ChakraMenu,
   MenuItem,
-  useColorModeValue
+  useColorMode,
+  useColorModeValue,
+  Menu as ChakraMenu
 } from '@chakra-ui/react'
-import { BsFillTrashFill, BsStarFill, BsPeopleFill } from 'react-icons/bs'
 import { MdHome } from 'react-icons/md'
-import React, { ReactElement } from 'react'
-import customColors from '@app/utils/colors'
 import { useRouter } from 'next/router'
+import customColors from '@app/utils/colors'
 
 type menuDataType = {
   key: number
@@ -44,8 +53,22 @@ const menuData: menuDataType[] = [
   }
 ]
 
-const CustomMenuItem = ({ menuData }: { menuData: menuDataType[] }) => {
+const CustomMenuItem = ({
+  menuData
+}: {
+  menuData: menuDataType[]
+  colorMode: 'dark' | 'light'
+}) => {
   const router = useRouter()
+  const isNotColor = useColorModeValue(customColors.inactive, '#FFFFFF')
+  const color = useColorModeValue(customColors.primary, customColors.primary)
+  const bgColor = useColorModeValue(
+    customColors.label.light,
+    customColors.label.dark
+  )
+
+  const isEquals = (toVerify: string): boolean => router.pathname === toVerify
+
   return (
     <ChakraMenu>
       {menuData.map(menu => (
@@ -59,9 +82,12 @@ const CustomMenuItem = ({ menuData }: { menuData: menuDataType[] }) => {
           mb="30px"
           p="8px"
           icon={menu.icon}
+          color={isEquals(menu.path) ? color : isNotColor}
+          bgColor={isEquals(menu.path) ? bgColor : 'transparent'}
+          borderRadius={isEquals(menu.path) ? '4' : '0'}
           onClick={() => router.push(menu.path)}
         >
-          <Heading fontFamily="Manrope" fontWeight="600" size="sm">
+          <Heading fontFamily="Manrope" fontWeight="semibold" size="sm">
             {menu.name}
           </Heading>
         </MenuItem>
@@ -71,6 +97,7 @@ const CustomMenuItem = ({ menuData }: { menuData: menuDataType[] }) => {
 }
 
 const Menu = (): ReactElement => {
+  const { colorMode, toggleColorMode } = useColorMode()
   return (
     <Box
       as="div"
@@ -91,13 +118,28 @@ const Menu = (): ReactElement => {
     >
       <Box as="div" w="80%">
         <Box as="div" mb="91px">
-          <img src="/assets/logo.png" width="121" />
+          {colorMode === 'light' ? (
+            <img src="/assets/logo-light.png" width="121" />
+          ) : (
+            <img src="/assets/logo.png" width="121" />
+          )}
         </Box>
-        <CustomMenuItem menuData={menuData} />
+        <CustomMenuItem menuData={menuData} colorMode={colorMode} />
       </Box>
-      <Box as="div" w="31px" h="31px">
-        <img src="/assets/moon.svg" width="100" />
-      </Box>
+
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        border={`1px solid ${customColors.primary}`}
+        w="40px"
+        h="40px"
+        borderRadius="4"
+        onClick={toggleColorMode}
+        cursor="pointer"
+        color={customColors.primary}
+      >
+        {colorMode === 'light' ? <BsMoon size={20} /> : <BsSun size={20} />}
+      </Flex>
     </Box>
   )
 }
