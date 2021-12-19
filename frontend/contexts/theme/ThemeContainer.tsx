@@ -7,12 +7,7 @@ import theme from '../../styles/theme'
 const ThemeContainer: React.FC = ({ children }) => {
   return (
     <ChakraProvider theme={theme} resetCSS>
-      <ColorModeProvider
-        value="dark"
-        options={{ initialColorMode: 'dark', useSystemColorMode: true }}
-      >
-        <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
-      </ColorModeProvider>
+      <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
     </ChakraProvider>
   )
 }

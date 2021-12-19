@@ -1,3 +1,4 @@
+import { ColorModeScript } from '@chakra-ui/react'
 import Document, {
   DocumentProps,
   Html,
@@ -5,6 +6,7 @@ import Document, {
   Main,
   NextScript
 } from 'next/document'
+import customtheme from 'styles/theme'
 
 class MyDocument extends Document<DocumentProps> {
   render(): JSX.Element {
@@ -23,6 +25,9 @@ class MyDocument extends Document<DocumentProps> {
           <link rel="shortcut icon" href="/assets/favicon.png" />
         </Head>
         <body>
+          <ColorModeScript
+            initialColorMode={customtheme.config.initialColorMode}
+          />
           <Main />
           <NextScript />
         </body>
