@@ -1,4 +1,4 @@
-import { extendTheme, ThemeConfig } from '@chakra-ui/react'
+import { extendTheme, theme, ThemeConfig } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 import customColors from '../src/utils/colors'
 
@@ -18,10 +18,14 @@ const config: ThemeConfig = {
 const customtheme = extendTheme({
   config,
   colors: {
-    primary: primary,
-    secondary: secondary,
-    terciary: terciary,
-    accent: '#54C4E4',
+    ...theme.colors,
+    primary: {
+      200: primary,
+      500: primary
+    },
+    secondary: { 200: secondary, 500: secondary },
+    terciary: { 200: terciary, 500: terciary },
+    accent: secondary,
     error: error,
     warning: warning,
     success: success
