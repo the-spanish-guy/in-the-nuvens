@@ -1,15 +1,13 @@
 import { Request, Response } from 'express'
-import UserService from '@services/UserService'
 import { HttpStatus } from '@utils/HttpStatus'
+import UserService from '@services/UserService'
+import CreateUserValidation from '@validations/CreateUserValidation'
 
 class UserController {
-  public async index(request: Request, repsonse: Response): Promise<Response> {
-    console.log('teste')
-    const users = await UserService.index()
-    return repsonse.json(users)
-  }
+  public async create(request: Request, response: Response): Promise<Response> {
+    const validated = CreateUserValidation.validate(request.body)
+    if (validated) response.json(validated)
 
-  public async store(request: Request, response: Response): Promise<Response> {
     const user = await UserService.store(request.body)
     return response.json(user)
   }
