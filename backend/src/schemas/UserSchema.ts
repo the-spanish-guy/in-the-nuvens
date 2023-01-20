@@ -2,6 +2,7 @@ import { model, Schema } from 'mongoose'
 import * as bcrypt from 'bcrypt'
 
 export interface IUser {
+  id?: string
   username: string
   password: string
 }
@@ -12,7 +13,8 @@ const UserSchema: Schema = new Schema<IUser>(
     password: { type: String, required: true, trim: true }
   },
   {
-    timestamps: true
+    timestamps: true,
+    id: true
   }
 )
 
