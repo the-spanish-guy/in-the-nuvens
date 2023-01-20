@@ -1,17 +1,14 @@
 {
   "semi": false,
-  "trailingComma": "none",
-  "arrowParens": "avoid",
-  "singleQuote": true,
   "tabWidth": 2,
   "printWidth": 80,
-  "endOfLine": "auto",
+  "endOfLine": "lf",
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "trailingComma": "none",
   "overrides": [
     {
-      "files": [
-        "src/**/*.{ts,tsx}",
-        "tests/**/*.spec.{ts,tsx}"
-      ]
+      "files": ["src/**/*.{ts,tsx}", "tests/**/*.spec.{ts,tsx}"]
     }
   ]
 }

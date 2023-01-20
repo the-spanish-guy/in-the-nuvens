@@ -33,7 +33,7 @@
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": false,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
