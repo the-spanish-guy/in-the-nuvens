@@ -1,6 +1,9 @@
+import fs from 'fs'
 import { Request, Response } from 'express'
+
 import { HttpStatus } from '@utils/HttpStatus'
 import UserService from '@services/UserService'
+import { FolderService } from '@services/FolderService'
 import CreateUserValidation from '@validations/CreateUserValidation'
 
 class UserController {
@@ -9,6 +12,11 @@ class UserController {
     if (validated) response.json(validated)
 
     const user = await UserService.store(request.body)
+
+    const { absolute } = new FolderService().resolvePath(user.id)
+
+    await fs.promises.mkdir(absolute, { recursive: true })
+
     return response.json(user)
   }
 
